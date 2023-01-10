@@ -2,8 +2,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-score = [["true", "false", "false", "true", "true"], 
-         ["true", "true", "true", "true", "true"]]
+score = [["完走", "失敗", "失敗", "完走", "完走"],
+         ["完走", "完走", "完走", "完走", "完走"]]
 score1 = [[], []]
 for i in range(1):
     score1[0].extend(score[0])
@@ -12,7 +12,8 @@ x = np.arange(0, 1.01, step=0.01)
 y = []
 print("試行回数 : ", len(score1[0]))
 
-def all(): #それぞれでの試行における結果
+#それぞれの試行における結果の表示
+def all():
     fig, ax = plt.subplots(2, ncols=int((len(score1[0]) / 2) + 1), tight_layout=True)
     ax = ax.ravel()
     for num in range(int(len(y) / 2)):
@@ -28,7 +29,8 @@ def all(): #それぞれでの試行における結果
         ax[num].minorticks_on()
         ax[num].grid(which="both", axis="y")
 
-def last(): #最後の結果
+#最終的な結果の表示
+def last():
     plt.plot(x, y[int((len(y) - 1) / 2)], color="blue")
     print("改良前 : ", max(y[int((len(y) - 1) / 2)]))
     plt.plot(x, y[int(len(y) - 1)], color="red")
@@ -45,30 +47,38 @@ def last(): #最後の結果
 
 for i in range(len(score1)):
     y.append(np.full_like(x, 1/101))
-    if score1[i][0] == "true":
+    #1回目の事後分布を計算し, リストに追加
+    #完走だった場合
+    if score1[i][0] == "完走":
         const = 1 / (sum(np.arange(0, 1.01, step=0.01) * 1/101))
         t_y = const * np.arange(0, 1.01, step=0.01) * 1/101
         flag = True
         y.append(t_y)
-    elif score1[i][0] == "false":
+    #失敗だった場合
+    elif score1[i][0] == "失敗":
         const = 1 / (sum((1 - np.arange(0, 1.01, step=0.01)) * 1/101))
         f_y = const * (1 - np.arange(0, 1.01, step=0.01)) * 1/101
         flag = False
         y.append(f_y)
+    #2回目以降の事後分布を計算し, リストに追加
     for j in score1[i][1:]:
-        if j == "true":
+        if j == "完走":
+            #一つ前の試行が｢完走｣かつ現在の試行が｢完走｣だった場合
             if flag:
                 const = 1/(sum(np.arange(0, 1.01, step=0.01) * t_y))
                 t_y = const * np.arange(0, 1.01, step=0.01) * t_y
+            #一つ前の試行が｢失敗｣かつ現在の試行が｢完走｣だった場合
             else:
                 const = 1/(sum(np.arange(0, 1.01, step=0.01) * f_y))
                 t_y = const * np.arange(0, 1.01, step=0.01) * f_y
             flag = True
             y.append(t_y)
-        elif j == "false":
+        elif j == "失敗":
+            #一つ前の試行が｢完走｣かつ現在の試行が｢失敗｣だった場合
             if flag:
                 const = 1/(sum((1 - np.arange(0, 1.01, step=0.01)) * t_y))
                 f_y = const * (1 - np.arange(0, 1.01, step=0.01)) * t_y
+            #一つ前の試行が｢失敗｣かつ現在の試行が｢失敗｣だった場合
             else:
                 const = 1/(sum((1 - np.arange(0, 1.01, step=0.01)) * f_y))
                 f_y = const * (1 - np.arange(0, 1.01, step=0.01)) * f_y
