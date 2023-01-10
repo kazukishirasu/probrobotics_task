@@ -4,3 +4,6 @@
 * OS : Ubuntu 20.04.5 LTS  
 * メモリ : 8 [GB]
 * Python : 3.8.10
+# 作成したプログラム
+# LICENSE
+The source code is licensed MIT, see LICENSE.
