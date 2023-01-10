@@ -12,7 +12,7 @@
 * 改良後 : [完走, 完走, 完走, 完走, 完走]  
 
 作成したプログラムは以下に記載する.  
-[task.py](https://github.com/kazukishirasu/probrobotics_task/blob/master/task.py)  
+[calc_distribution.py](https://github.com/kazukishirasu/probrobotics_task/blob/master/calc_distribution.py)  
 はじめに必要なライブラリのインポートや変数などを定義した. グラフの表示にはmatplotlibを用いた.
 ```
 #!/usr/bin/python3
