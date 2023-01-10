@@ -1,4 +1,5 @@
 # probabilistic_robotics
+確率ロボティクス課題用リポジトリ
 # 実行環境
 * CPU : Intel Core i5-8265U 1.6[GHz]
 * OS : Ubuntu 20.04.5 LTS  
