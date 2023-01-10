@@ -4,6 +4,8 @@ import numpy as np
 
 score = [["true", "false", "false", "true", "true"], 
          ["true", "true", "true", "true", "true"]]
+# score = [["true", "false", "false", "true", "true", "true", "false", "false", "true", "true"], 
+#          ["true", "true", "true", "true", "true", "true", "false", "false", "true", "true"]]
 x = np.arange(0, 1.01, step=0.01)
 y = []
 
@@ -39,11 +41,11 @@ for i in range(len(score)):
             flag = False
             y.append(f_y)
 print(y)
-fig, ax = plt.subplots(2, 3, tight_layout=True)
+fig, ax = plt.subplots(2, ncols=int((len(score[0]) / 2) + 1), tight_layout=True)
 ax = ax.ravel()
 for num in range(int(len(y) / 2)):
     ax[num].plot(x, y[num])
-    ax[num].plot(x, y[num + 6])
+    ax[num].plot(x, y[num + len((score)[0]) + 1])
     ax[num].set_xlim(0, 1)
     ax[num].set_ylim(0, 0.1)
     ax[num].minorticks_on()
