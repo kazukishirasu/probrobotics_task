@@ -95,6 +95,9 @@ all()
 plt.show()
 ```
 これらを用いて, 分布を計算すると以下に示すグラフを出力した. x軸が完走率, y軸が確率である. 青線が改良前, 赤線が改良後である.  
-![trial_all_5](https://user-images.githubusercontent.com/72000550/211543213-b583a08a-8da6-4bf8-9201-341053c5c488.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72000550/211546123-21dae3fc-5c4e-4e03-baed-4ff426ba4075.png">
+</p>
+
 # LICENSE
 The source code is licensed MIT, see [LICENSE](https://github.com/kazukishirasu/probrobotics_task/blob/master/LICENSE).
