@@ -12,6 +12,37 @@ x = np.arange(0, 1.01, step=0.01)
 y = []
 print("試行回数 : ", len(score1[0]))
 
+def all(): #それぞれでの試行における結果
+    fig, ax = plt.subplots(2, ncols=int((len(score1[0]) / 2) + 1), tight_layout=True)
+    ax = ax.ravel()
+    for num in range(int(len(y) / 2)):
+        ax[num].plot(x, y[num], color="blue")
+        ax[num].plot(x, y[num + len((score1)[0]) + 1], color="red")
+        ax[num].set_xlabel("t")
+        ax[num].set_ylabel("prob")
+        ax[num].set_xlim(0, 1)
+        ax[num].set_ylim(0, 0.1)
+        ax[num].set_xticks(np.arange(0.0, 1.1, 0.5))
+        ax[num].set_yticks(np.arange(0.0, 0.11, 0.02))
+        ax[num].grid(axis="x")
+        ax[num].minorticks_on()
+        ax[num].grid(which="both", axis="y")
+
+def last(): #最後の結果
+    plt.plot(x, y[int((len(y) - 1) / 2)], color="blue")
+    print("改良前 : ", max(y[int((len(y) - 1) / 2)]))
+    plt.plot(x, y[int(len(y) - 1)], color="red")
+    print("改良後 : ", max(y[int(len(y) - 1)]))
+    plt.xlabel("t")
+    plt.ylabel("prob")
+    plt.xlim(0, 1.0)
+    plt.ylim(0, 0.3)
+    plt.xticks(np.arange(0.0, 1.1, 0.1))
+    plt.yticks(np.arange(0.0, 0.35, 0.05))
+    plt.grid(axis="x")
+    plt.minorticks_on()
+    plt.grid(which="both", axis="y")
+
 for i in range(len(score1)):
     y.append(np.full_like(x, 1/101))
     if score1[i][0] == "true":
@@ -43,31 +74,6 @@ for i in range(len(score1)):
                 f_y = const * (1 - np.arange(0, 1.01, step=0.01)) * f_y
             flag = False
             y.append(f_y)
-#それぞれでの結果↓
-fig, ax = plt.subplots(2, ncols=int((len(score1[0]) / 2) + 1), tight_layout=True)
-ax = ax.ravel()
-for num in range(int(len(y) / 2)):
-    ax[num].plot(x, y[num], color="blue")
-    ax[num].plot(x, y[num + len((score1)[0]) + 1], color="red")
-    ax[num].set_xlim(0, 1)
-    ax[num].set_ylim(0, 0.1)
-    ax[num].set_xticks(np.arange(0.0, 1.1, 0.5))
-    ax[num].set_yticks(np.arange(0.0, 0.11, 0.02))
-    ax[num].grid(axis="x")
-    ax[num].minorticks_on()
-    ax[num].grid(which="both", axis="y")
-
-#最後の結果↓
-# plt.plot(x, y[int((len(y) - 1) / 2)], color="blue")
-# print("改良前 : ", max(y[int((len(y) - 1) / 2)]))
-# plt.plot(x, y[int(len(y) - 1)], color="red")
-# print("改良後 : ", max(y[int(len(y) - 1)]))
-# plt.xlim(0, 1.0)
-# plt.ylim(0, 0.3)
-# plt.xticks(np.arange(0.0, 1.1, 0.1))
-# plt.yticks(np.arange(0.0, 0.35, 0.05))
-# plt.grid(axis="x")
-# plt.minorticks_on()
-# plt.grid(which="both", axis="y")
-
+all()
+# last()
 plt.show()
