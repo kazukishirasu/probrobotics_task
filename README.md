@@ -29,8 +29,8 @@ x = np.arange(0, 1.01, step=0.01)
 y = []
 print("試行回数 : ", len(score1[0]))
 ```
-関数```all()```は試行一回ずつの結果を表示するための関数である.  
-関数```last()```は最後の結果のみを表示するための関数である.  
+```all()```は試行一回ずつの結果を表示するための関数である.  
+```last()```は最後の結果のみを表示するための関数である.  
 ```
 def all():
     fig, ax = plt.subplots(2, ncols=int((len(score1[0]) / 2) + 1), tight_layout=True)
