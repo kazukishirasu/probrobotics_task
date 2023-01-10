@@ -6,9 +6,14 @@
 * メモリ : 8 [GB]
 * Python : 3.8.10
 # 作成したプログラム
+試行結果からその事後分布を計算し, グラフにプロットするプログラムを作成した. 試行結果は以下に示す通りである.  
+
+* 改良前 : [完走, 失敗, 失敗, 完走, 完走]  
+* 改良後 : [完走, 完走, 完走, 完走, 完走]  
+
 作成したプログラムは以下に記載する.  
 [task.py](https://github.com/kazukishirasu/probrobotics_task/blob/master/task.py)  
-はじめに必要なライブラリや変数などを定義した. グラフの表示にはmatplotlibを用いた.
+はじめに必要なライブラリのインポートや変数などを定義した. グラフの表示にはmatplotlibを用いた.
 ```
 #!/usr/bin/python3
 import matplotlib.pyplot as plt
@@ -58,7 +63,7 @@ def last():
     plt.minorticks_on()
     plt.grid(which="both", axis="y")
 ```
-以下のコードで試行の結果に応じて事後分布を計算し, グラフを表示する.  
+以下のコードで試行結果に応じて事後分布を計算し, グラフを表示する.  
 ```
 for i in range(len(score1)):
     y.append(np.full_like(x, 1/101))
@@ -95,10 +100,20 @@ all()
 # last()
 plt.show()
 ```
-これらを用いて, 分布を計算すると以下に示すグラフを出力した. x軸が完走率, y軸が確率である. 青線が改良前, 赤線が改良後である.  
+これらのプログラムを用いて, 試行結果から事後分布を計算すると以下に示すグラフが得られた. 青線が改良前, 赤線が改良後である.  
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/72000550/211546123-21dae3fc-5c4e-4e03-baed-4ff426ba4075.png">
 </p>
+
+すべての試行が終了した5つ目のグラフに注目すると改良後の方が完走する確率は高いと考えられる. しかし, 改良前と改良後の分布では重なっている箇所があり, 今後試行回数を増やしていくと改良前は｢完走｣が増え, 改良後は｢失敗｣が増え分布が大きく変わる可能性がある. そこで, 次に分布の重なりがほぼなくなる程度まで試行回数を増やす実験を行った.  試行回数は以下に示すように, 単純にもとの試行結果を2倍, 4倍, 6倍したものを用いた.  
+
+* 改良前 : [完走, 失敗, 失敗, 完走, 完走, 完走, 失敗, 失敗, 完走, 完走, ･･･]  
+* 改良後 : [完走, 完走, 完走, 完走, 完走, 完走, 完走, 完走, 完走, 完走, ･･･]  
+
+結果を以下に示す. 左から順に試行回数が10回, 20回, 30回のときのグラフである. 10回, 20回のときは分布が重なっているが, 30回のときでは重なりはほぼなく今後試行回数を増やし場合でも完走率が逆転することは極めて低いと考えられる. よって, 試行回数は最低でも30回は必要であると考える.
+
+<img src="https://user-images.githubusercontent.com/72000550/211583540-2418539c-069d-4527-aae4-2226da517b08.png" width=33%><img src="https://user-images.githubusercontent.com/72000550/211583553-fb3bf8d3-1b79-4ec9-9116-2505c2f22176.png" width=33%><img src="https://user-images.githubusercontent.com/72000550/211583560-af555547-e5b1-48ca-b081-76ab5a54856d.png" width=33%>
 
 # LICENSE
 The source code is licensed MIT, see [LICENSE](https://github.com/kazukishirasu/probrobotics_task/blob/master/LICENSE).
