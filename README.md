@@ -57,7 +57,7 @@ def last():
     plt.minorticks_on()
     plt.grid(which="both", axis="y")
 ```
-試行の結果に応じて事後分布を計算する.  
+以下のコードで試行の結果に応じて事後分布を計算し, グラフを表示する.  
 ```
 for i in range(len(score1)):
     y.append(np.full_like(x, 1/101))
@@ -94,5 +94,7 @@ all()
 # last()
 plt.show()
 ```
+これらを用いて, 分布を計算すると以下に示すグラフを出力した. x軸が完走率, y軸が確率である. 青線が改良前, 赤線が改良後である.  
+![trial_all_5](https://user-images.githubusercontent.com/72000550/211543213-b583a08a-8da6-4bf8-9201-341053c5c488.png)
 # LICENSE
 The source code is licensed MIT, see [LICENSE](https://github.com/kazukishirasu/probrobotics_task/blob/master/LICENSE).
