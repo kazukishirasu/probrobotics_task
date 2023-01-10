@@ -42,7 +42,6 @@ print(y)
 fig, ax = plt.subplots(2, 3, tight_layout=True)
 ax = ax.ravel()
 for num in range(int(len(y) / 2)):
-    print(num)
     ax[num].plot(x, y[num])
     ax[num].plot(x, y[num + 6])
     ax[num].set_xlim(0, 1)
