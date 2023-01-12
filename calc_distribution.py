@@ -31,10 +31,16 @@ def all():
 
 # 最終的な結果の表示
 def last():
-    plt.plot(x, y[int((len(y) - 1) / 2)], color="blue")
-    print("改良前 : ", max(y[int((len(y) - 1) / 2)]))
-    plt.plot(x, y[int(len(y) - 1)], color="red")
-    print("改良後 : ", max(y[int(len(y) - 1)]))
+    before = (len(y) - 1) / 2
+    after = len(y) - 1
+    plt.plot(x, y[int(before)], color="blue")
+    print("改良前")
+    print("prob = ", max(y[int(before)]))
+    print("   t = ", x[np.where(y[int(before)] == max(y[int(before)]))][0])
+    plt.plot(x, y[int(after)], color="red")
+    print("改良後")
+    print("prob = ", max(y[int(after)]))
+    print("   t = ", x[np.where(y[int(after)] == max(y[int(after)]))][0])
     plt.xlabel("t")
     plt.ylabel("prob")
     plt.xlim(0, 1.0)

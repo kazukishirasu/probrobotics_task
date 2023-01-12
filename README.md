@@ -15,7 +15,6 @@
 [calc_distribution.py](https://github.com/kazukishirasu/probrobotics_task/blob/master/calc_distribution.py)  
 はじめに必要なライブラリのインポートや変数などを定義した. グラフの表示にはmatplotlibを用いた.
 ```
-#!/usr/bin/python3
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -40,6 +39,7 @@ def all():
         ax[num].plot(x, y[num + len((score1)[0]) + 1], color="red")
         ax[num].set_xlabel("t")
         ax[num].set_ylabel("prob")
+        ax[num].set_title(num)
         ax[num].set_xlim(0, 1)
         ax[num].set_ylim(0, 0.1)
         ax[num].set_xticks(np.arange(0.0, 1.5, 0.5))
@@ -47,12 +47,18 @@ def all():
         ax[num].grid(axis="x")
         ax[num].minorticks_on()
         ax[num].grid(which="both", axis="y")
-        
+
 def last():
-    plt.plot(x, y[int((len(y) - 1) / 2)], color="blue")
-    print("改良前 : ", max(y[int((len(y) - 1) / 2)]))
-    plt.plot(x, y[int(len(y) - 1)], color="red")
-    print("改良後 : ", max(y[int(len(y) - 1)]))
+    before = (len(y) - 1) / 2
+    after = len(y) - 1
+    plt.plot(x, y[int(before)], color="blue")
+    print("改良前")
+    print("prob = ", max(y[int(before)]))
+    print("   t = ", x[np.where(y[int(before)] == max(y[int(before)]))][0])
+    plt.plot(x, y[int(after)], color="red")
+    print("改良後")
+    print("prob = ", max(y[int(after)]))
+    print("   t = ", x[np.where(y[int(after)] == max(y[int(after)]))][0])
     plt.xlabel("t")
     plt.ylabel("prob")
     plt.xlim(0, 1.0)
