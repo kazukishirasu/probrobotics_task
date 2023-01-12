@@ -65,22 +65,22 @@ for i in range(len(score1)):
         if j == "完走":
             # 一つ前の試行が｢完走｣かつ現在の試行が｢完走｣だった場合
             if flag:
-                const = 1/(sum(x * t_y))
+                const = 1 / (sum(x * t_y))
                 t_y = const * x * t_y
             # 一つ前の試行が｢失敗｣かつ現在の試行が｢完走｣だった場合
             else:
-                const = 1/(sum(x * f_y))
+                const = 1 / (sum(x * f_y))
                 t_y = const * x * f_y
             flag = True
             y.append(t_y)
         elif j == "失敗":
             # 一つ前の試行が｢完走｣かつ現在の試行が｢失敗｣だった場合
             if flag:
-                const = 1/(sum((1 - x) * t_y))
+                const = 1 / (sum((1 - x) * t_y))
                 f_y = const * (1 - x) * t_y
             # 一つ前の試行が｢失敗｣かつ現在の試行が｢失敗｣だった場合
             else:
-                const = 1/(sum((1 - x) * f_y))
+                const = 1 / (sum((1 - x) * f_y))
                 f_y = const * (1 - x) * f_y
             flag = False
             y.append(f_y)

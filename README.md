@@ -80,19 +80,19 @@ for i in range(len(score1)):
     for j in score1[i][1:]:
         if j == "完走":
             if flag:
-                const = 1/(sum(x * t_y))
+                const = 1 / (sum(x * t_y))
                 t_y = const * x * t_y
             else:
-                const = 1/(sum(x * f_y))
+                const = 1 / (sum(x * f_y))
                 t_y = const * x * f_y
             flag = True
             y.append(t_y)
         elif j == "失敗":
             if flag:
-                const = 1/(sum((1 - x) * t_y))
+                const = 1 / (sum((1 - x) * t_y))
                 f_y = const * (1 - x) * t_y
             else:
-                const = 1/(sum((1 - x) * f_y))
+                const = 1 / (sum((1 - x) * f_y))
                 f_y = const * (1 - x) * f_y
             flag = False
             y.append(f_y)
