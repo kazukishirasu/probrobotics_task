@@ -68,32 +68,32 @@ def last():
 for i in range(len(score1)):
     y.append(np.full_like(x, 1/101))
     if score1[i][0] == "完走":
-        const = 1 / (sum(np.arange(0, 1.01, step=0.01) * 1/101))
-        t_y = const * np.arange(0, 1.01, step=0.01) * 1/101
+        const = 1 / (sum(x * 1/101))
+        t_y = const * x * 1/101
         flag = True
         y.append(t_y)
     elif score1[i][0] == "失敗":
-        const = 1 / (sum((1 - np.arange(0, 1.01, step=0.01)) * 1/101))
-        f_y = const * (1 - np.arange(0, 1.01, step=0.01)) * 1/101
+        const = 1 / (sum((1 - x) * 1/101))
+        f_y = const * (1 - x) * 1/101
         flag = False
         y.append(f_y)
     for j in score1[i][1:]:
         if j == "完走":
             if flag:
-                const = 1/(sum(np.arange(0, 1.01, step=0.01) * t_y))
-                t_y = const * np.arange(0, 1.01, step=0.01) * t_y
+                const = 1/(sum(x * t_y))
+                t_y = const * x * t_y
             else:
-                const = 1/(sum(np.arange(0, 1.01, step=0.01) * f_y))
-                t_y = const * np.arange(0, 1.01, step=0.01) * f_y
+                const = 1/(sum(x * f_y))
+                t_y = const * x * f_y
             flag = True
             y.append(t_y)
         elif j == "失敗":
             if flag:
-                const = 1/(sum((1 - np.arange(0, 1.01, step=0.01)) * t_y))
-                f_y = const * (1 - np.arange(0, 1.01, step=0.01)) * t_y
+                const = 1/(sum((1 - x) * t_y))
+                f_y = const * (1 - x) * t_y
             else:
-                const = 1/(sum((1 - np.arange(0, 1.01, step=0.01)) * f_y))
-                f_y = const * (1 - np.arange(0, 1.01, step=0.01)) * f_y
+                const = 1/(sum((1 - x) * f_y))
+                f_y = const * (1 - x) * f_y
             flag = False
             y.append(f_y)
 all()
